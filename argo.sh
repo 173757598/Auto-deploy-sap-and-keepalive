@@ -233,11 +233,22 @@ parse_arguments() {
 # 安装 Cloud Foundry CLI
 install_cf_cli() {
     if ! command_exists cf; then
-        print_info "Installing Cloud Foundry CLI..."
-        wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | sudo apt-key add -
-        echo "deb https://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
-        sudo apt-get update
-        sudo apt-get install -y cf8-cli
+       print_info "Installing Cloud Foundry CLI..."
+# 安装 gnupg（确保可用）
+sudo apt-get update
+sudo apt-get install -y gnupg
+
+# 下载并安装 GPG 密钥到 keyring 目录
+curl -fsSL https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | \
+  sudo gpg --dearmor -o /usr/share/keyrings/cloudfoundry-cli-archive-keyring.gpg
+
+# 添加仓库（使用 signed-by）
+echo "deb [signed-by=/usr/share/keyrings/cloudfoundry-cli-archive-keyring.gpg] https://packages.cloudfoundry.org/debian stable main" | \
+  sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
+
+# 更新并安装正确包名
+sudo apt-get update
+sudo apt-get install -y cf-cli
         if [ $? -eq 0 ]; then
             print_success "Cloud Foundry CLI installed successfully"
         else
