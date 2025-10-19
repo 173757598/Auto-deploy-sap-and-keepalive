@@ -81,7 +81,12 @@ wget https://raw.githubusercontent.com/eooce/Auto-deploy-sap-and-keepalive/refs/
 4. 部署区域（SG(free)和US(free)为试用版,其他为企业版，请选择和开设的平台对应,aws,gcp,azure
 5. 建议设置SUB_PATH订阅token,防止节点泄露
 
+
+
+
+
+
    vps 部署argo.sh,要生成.evn文件，里面有相关环境变量设置，后在vps中执行
    wget https://raw.githubusercontent.com/173757598/Auto-deploy-sap-and-keepalive/refs/heads/main/argo.sh && chmod +x argo.sh
-   bash argo.sh
+   和bash argo.sh
 
