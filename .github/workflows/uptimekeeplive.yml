@@ -1,4 +1,4 @@
-name: your action
+name: 自动保活项目
 
 on:
   workflow_dispatch:
