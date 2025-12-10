@@ -12,8 +12,6 @@ on:
 jobs:
   deploy-and-sync:
     runs-on: ubuntu-latest
-    ..............
-
     steps:
       - name: Check Trigger Event
         run: |
@@ -26,4 +24,3 @@ jobs:
           else
             echo "工作流由计划任务触发，开始执行部署..."
           fi
-    ..............
